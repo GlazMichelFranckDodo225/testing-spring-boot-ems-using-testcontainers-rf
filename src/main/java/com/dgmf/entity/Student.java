@@ -19,7 +19,10 @@ public class Student {
     private String firstName;
     private String lastName;
     @Column(nullable = false, unique = true)
+    private String username;
+    @Column(nullable = false, unique = true)
     private String email;
+    private String password;
     // Hibernate will automatically take the
     // current Timestamp of the JVM
     @CreationTimestamp
