@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class StudentMapper {
     private final ModelMapper modelMapper;
 
-    public StudentDtoResponse mapToStudentDtoRequest(Student student) {
+    public StudentDtoResponse mapToStudentDtoResponse(Student student) {
         return modelMapper.map(student, StudentDtoResponse.class);
     }
 
