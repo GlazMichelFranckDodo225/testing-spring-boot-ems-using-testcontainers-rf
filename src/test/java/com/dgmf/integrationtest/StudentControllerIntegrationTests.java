@@ -30,6 +30,7 @@ class StudentControllerIntegrationTests {
     private StudentService studentService;
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
     private StudentRepository studentRepository;
     @Autowired
     private MockMvc mockMvc;
