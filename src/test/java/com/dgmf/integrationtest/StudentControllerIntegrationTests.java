@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.List;
@@ -27,6 +29,9 @@ import java.util.List;
 @AutoConfigureMockMvc
 // Provide Extension to Integrate JUnit 5 with Test
 // Containers ==> Ctrl + B ==> @ExtendWith({TestcontainersExtension.class})
+// Testcontainers will Pull Docker Image from DockerHub and Deploy It into
+// Docker Container. We don't Have to Install MySQL into Local Machine, Just
+// Install Docker
 @Testcontainers
 class StudentControllerIntegrationTests {
     @Autowired
@@ -37,6 +42,12 @@ class StudentControllerIntegrationTests {
     private StudentRepository studentRepository;
     @Autowired
     private MockMvc mockMvc;
+    // @Container ==> To Make MySQLContainer Instance Life Cycle to Be
+    // Managed by @Testcontainers (above) ==> Basically, Start and Stop the
+    // Docker Container
+    // Static ==> To Be Shared with Multiple Test Cases
+    @Container
+    private static MySQLContainer mySQLContainer = new MySQLContainer<>("mysql:latest");
     
     // given/when/then format ==> BDD (Behavior Driven Development) Style
     // Get All Students Integration Test
