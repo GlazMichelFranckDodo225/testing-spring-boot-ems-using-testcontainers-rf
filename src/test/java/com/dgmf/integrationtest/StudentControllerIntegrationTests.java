@@ -47,13 +47,22 @@ class StudentControllerIntegrationTests {
     // Docker Container
     // Static ==> To Be Shared with Multiple Test Cases
     @Container
-    private static MySQLContainer mySQLContainer = new MySQLContainer<>("mysql:latest");
-    
+    private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:latest");
+
+
+
     // given/when/then format ==> BDD (Behavior Driven Development) Style
     // Get All Students Integration Test
     @Test
     @DisplayName("Get All Students Integration Test")
     public void givenStudents_whenGetAllStudents_thenReturnListOfStudents() throws Exception {
+        // To Display Default "username" and "password" of MySQL Container into the Console.
+        // They are Used by Testcontainers to Managed Embedded MySQL Database
+        System.out.println(mySQLContainer.getJdbcUrl());
+        System.out.println(mySQLContainer.getDatabaseName());
+        System.out.println(mySQLContainer.getUsername());
+        System.out.println(mySQLContainer.getPassword());
+
         // Given - Setup or Precondition
         List<StudentDtoRequest> studentDtos = List.of(
                 StudentDtoRequest.builder()
@@ -69,6 +78,20 @@ class StudentControllerIntegrationTests {
                         .username("tonyStark")
                         .email("tonystark@gmail.com")
                         .password("1234")
+                        .build(),
+                StudentDtoRequest.builder()
+                        .firstName("Maeva")
+                        .lastName("Devon")
+                        .username("maevadevon")
+                        .email("johndoemaevadevon@gmail.com")
+                        .password("12345")
+                        .build(),
+                StudentDtoRequest.builder()
+                        .firstName("Henry")
+                        .lastName("Byron")
+                        .username("henrybyron")
+                        .email("henrybyron@gmail.com")
+                        .password("123456")
                         .build()
         );
 
