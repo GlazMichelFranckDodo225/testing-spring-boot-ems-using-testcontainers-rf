@@ -15,9 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 // Loads Full ApplicationContext (All the Spring Beans Available into Application)
 // Will Invoke Automatically the "Main" Entry Point Class (that is Deployed with
@@ -25,6 +25,9 @@ import java.util.stream.Collectors;
 @SpringBootTest
 // To Mock MVC Library
 @AutoConfigureMockMvc
+// Provide Extension to Integrate JUnit 5 with Test
+// Containers ==> Ctrl + B ==> @ExtendWith({TestcontainersExtension.class})
+@Testcontainers
 class StudentControllerIntegrationTests {
     @Autowired
     private StudentService studentService;
