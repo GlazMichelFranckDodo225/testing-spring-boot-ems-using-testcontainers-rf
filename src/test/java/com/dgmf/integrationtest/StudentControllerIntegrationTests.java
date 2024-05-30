@@ -32,8 +32,8 @@ import java.util.List;
 // Testcontainers will Pull Docker Image from DockerHub and Deploy It into
 // Docker Container. We don't Have to Install MySQL into Local Machine, Just
 // Install Docker
-@Testcontainers
-class StudentControllerIntegrationTests {
+// @Testcontainers ==> Commented Because We Explicitly Start the Container with the Abstract Class
+class StudentControllerIntegrationTests extends AbstractContainerBaseTest{
     @Autowired
     private StudentService studentService;
     @Autowired
@@ -46,8 +46,8 @@ class StudentControllerIntegrationTests {
     // Managed by @Testcontainers (above) ==> Basically, Start and Stop the
     // Docker Container
     // Static ==> To Be Shared with Multiple Test Cases
-    @Container
-    private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:latest");
+    /*@Container ==> Commented Because We Explicitly Start the Container with the Abstract Class
+    private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:latest");*/
 
 
 
@@ -58,10 +58,10 @@ class StudentControllerIntegrationTests {
     public void givenStudents_whenGetAllStudents_thenReturnListOfStudents() throws Exception {
         // To Display Default "username" and "password" of MySQL Container into the Console.
         // They are Used by Testcontainers to Managed Embedded MySQL Database
-        System.out.println(mySQLContainer.getJdbcUrl());
+        /*System.out.println(mySQLContainer.getJdbcUrl());
         System.out.println(mySQLContainer.getDatabaseName());
         System.out.println(mySQLContainer.getUsername());
-        System.out.println(mySQLContainer.getPassword());
+        System.out.println(mySQLContainer.getPassword());*/
 
         // Given - Setup or Precondition
         List<StudentDtoRequest> studentDtos = List.of(
