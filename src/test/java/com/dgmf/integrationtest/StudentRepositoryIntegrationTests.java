@@ -19,7 +19,7 @@ Will :
 // this, We Have to Disable InMemory DB Support Like Below in Order to Use
 // the DB Configured into "application.properties" File
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class StudentRepositoryIntegrationTests {
+class StudentRepositoryIntegrationTests extends AbstractContainerBaseTest {
     @Autowired
     private StudentRepository studentRepository;
 
